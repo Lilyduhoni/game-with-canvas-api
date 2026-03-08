@@ -9,7 +9,6 @@
 </head>
 <body>
   <div id="loading-screen">
-    <canvas id="loading-bg"></canvas>
     <div class="loader-content">
       <h1 class="game-title">GUNS<span class="battle">BATTLE</span><span class="io">.IO</span></h1>
       <div class="loader-bar-container">
@@ -20,7 +19,6 @@
   </div>
 
   <div id="menu-screen" style="display:none;">
-    <canvas id="menu-bg"></canvas>
     <div class="menu-content">
       <h1 class="game-title menu-title">GUNS<span class="battle">BATTLE</span><span class="io">.IO</span></h1>
 
@@ -73,7 +71,7 @@
       </div>
 
       <div class="controls-info">
-        <p>WASD to move &middot; Mouse to aim &middot; Click to shoot</p>
+        <p>WASD to move &middot; Mouse to aim &middot; Click to shoot &middot; 1-4 to switch guns</p>
       </div>
     </div>
   </div>
@@ -111,6 +109,9 @@
   <canvas id="game-canvas" style="display:none;"></canvas>
 
   <div id="hud" style="display:none;">
+    <div id="ping-container">
+      <span id="ping-display">0ms</span>
+    </div>
     <div id="kill-feed"></div>
     <div id="hud-leaderboard">
       <div class="lb-title">LEADERBOARD</div>
@@ -123,9 +124,16 @@
     </div>
     <div id="gun-indicator">
       <img id="gun-indicator-img" src="/images/gun_pistol.png" alt="gun">
+      <span id="gun-indicator-name">Pistol</span>
+    </div>
+    <div id="gun-selector">
+      <div class="gun-slot" data-gun="pistol" title="Pistol [1]">1</div>
+      <div class="gun-slot" data-gun="rifle" title="Rifle [2]">2</div>
+      <div class="gun-slot" data-gun="shotgun" title="Shotgun [3]">3</div>
+      <div class="gun-slot" data-gun="sniper" title="Sniper [4]">4</div>
     </div>
     <div id="minimap-container">
-      <canvas id="minimap" width="150" height="150"></canvas>
+      <canvas id="minimap" width="160" height="160"></canvas>
     </div>
     <div id="hp-bar-container">
       <div id="hp-bar"></div>
