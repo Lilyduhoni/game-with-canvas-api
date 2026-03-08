@@ -5,30 +5,105 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>gunsbattle.io</title>
   <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="loading-screen">
+    <canvas id="loading-bg"></canvas>
     <div class="loader-content">
-      <h1 class="game-title">GUNSBATTLE<span class="io">.IO</span></h1>
+      <h1 class="game-title">GUNS<span class="battle">BATTLE</span><span class="io">.IO</span></h1>
       <div class="loader-bar-container">
         <div class="loader-bar" id="loader-bar"></div>
       </div>
-      <p class="loader-text" id="loader-text">Loading assets...</p>
+      <p class="loader-text" id="loader-text">Loading... (0%)</p>
     </div>
-    <div class="particles" id="particles"></div>
   </div>
 
   <div id="menu-screen" style="display:none;">
-    <div class="particles" id="menu-particles"></div>
+    <canvas id="menu-bg"></canvas>
     <div class="menu-content">
-      <h1 class="game-title menu-title">GUNSBATTLE<span class="io">.IO</span></h1>
-      <div class="menu-box">
-        <input type="text" id="name-input" placeholder="Enter your name" maxlength="16" autocomplete="off" spellcheck="false">
-        <button id="play-btn">PLAY</button>
+      <h1 class="game-title menu-title">GUNS<span class="battle">BATTLE</span><span class="io">.IO</span></h1>
+
+      <div id="auth-section">
+        <div id="guest-section" class="menu-box">
+          <input type="text" id="name-input" placeholder="Enter your name" maxlength="16" autocomplete="off" spellcheck="false">
+          <button id="play-btn" class="btn-primary">PLAY</button>
+          <div class="auth-links">
+            <button class="btn-link" id="show-login">Login</button>
+            <span class="divider">|</span>
+            <button class="btn-link" id="show-signup">Sign Up</button>
+          </div>
+        </div>
+
+        <div id="login-section" class="menu-box" style="display:none;">
+          <h3>Login</h3>
+          <input type="text" id="login-username" placeholder="Username" maxlength="16" autocomplete="off">
+          <input type="password" id="login-password" placeholder="Password" autocomplete="off">
+          <div id="login-error" class="error-msg"></div>
+          <button id="login-btn" class="btn-primary">LOGIN</button>
+          <button class="btn-link" id="back-to-guest-from-login">Back</button>
+        </div>
+
+        <div id="signup-section" class="menu-box" style="display:none;">
+          <h3>Sign Up</h3>
+          <input type="text" id="signup-username" placeholder="Username (3-16 chars)" maxlength="16" autocomplete="off">
+          <input type="password" id="signup-password" placeholder="Password (4+ chars)" autocomplete="off">
+          <div id="signup-error" class="error-msg"></div>
+          <button id="signup-btn" class="btn-primary">CREATE ACCOUNT</button>
+          <button class="btn-link" id="back-to-guest-from-signup">Back</button>
+        </div>
+
+        <div id="logged-in-section" class="menu-box" style="display:none;">
+          <div class="user-info">
+            <span class="user-name" id="user-display-name"></span>
+            <span class="user-coins"><img src="/images/coin.png" class="coin-icon" alt="coins"> <span id="user-coins-display">0</span></span>
+          </div>
+          <div class="user-stats-row">
+            <span>Kills: <b id="user-kills">0</b></span>
+            <span>Deaths: <b id="user-deaths">0</b></span>
+            <span>Best: <b id="user-best">0</b></span>
+          </div>
+          <button id="play-logged-btn" class="btn-primary">PLAY</button>
+          <div class="menu-buttons-row">
+            <button id="shop-btn" class="btn-secondary">SHOP</button>
+            <button id="lb-btn" class="btn-secondary">LEADERBOARD</button>
+          </div>
+          <button class="btn-link" id="logout-btn">Logout</button>
+        </div>
       </div>
+
       <div class="controls-info">
-        <p>WASD / Arrow Keys to move</p>
-        <p>Mouse to aim &middot; Click to shoot</p>
+        <p>WASD to move &middot; Mouse to aim &middot; Click to shoot</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="shop-screen" style="display:none;">
+    <div class="shop-overlay">
+      <div class="shop-container">
+        <div class="shop-header">
+          <h2>SHOP</h2>
+          <div class="shop-coins"><img src="/images/coin.png" class="coin-icon" alt="coins"> <span id="shop-coins">0</span></div>
+          <button class="shop-close" id="shop-close">&times;</button>
+        </div>
+        <div class="shop-tabs">
+          <button class="shop-tab active" data-tab="skins">Skins</button>
+          <button class="shop-tab" data-tab="guns">Guns</button>
+        </div>
+        <div class="shop-grid" id="shop-skins-grid"></div>
+        <div class="shop-grid" id="shop-guns-grid" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="leaderboard-screen" style="display:none;">
+    <div class="shop-overlay">
+      <div class="shop-container lb-container">
+        <div class="shop-header">
+          <h2>LEADERBOARD</h2>
+          <button class="shop-close" id="lb-close">&times;</button>
+        </div>
+        <div class="lb-table" id="lb-table"></div>
       </div>
     </div>
   </div>
@@ -37,16 +112,24 @@
 
   <div id="hud" style="display:none;">
     <div id="kill-feed"></div>
-    <div id="leaderboard">
+    <div id="hud-leaderboard">
       <div class="lb-title">LEADERBOARD</div>
-      <div id="lb-list"></div>
+      <div id="hud-lb-list"></div>
     </div>
     <div id="player-stats">
       <span id="stat-kills">Kills: 0</span>
       <span id="stat-deaths">Deaths: 0</span>
+      <span id="stat-coins" class="stat-coins"><img src="/images/coin.png" class="coin-icon-sm" alt="coins"> <span id="stat-coins-val">0</span></span>
+    </div>
+    <div id="gun-indicator">
+      <img id="gun-indicator-img" src="/images/gun_pistol.png" alt="gun">
     </div>
     <div id="minimap-container">
       <canvas id="minimap" width="150" height="150"></canvas>
+    </div>
+    <div id="hp-bar-container">
+      <div id="hp-bar"></div>
+      <span id="hp-text">100</span>
     </div>
   </div>
 

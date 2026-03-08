@@ -1,0 +1,145 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Arial",
+      "role": "body"
+    },
+    {
+      "family": "Franklin Gothic Medium",
+      "role": "heading"
+    },
+    {
+      "family": "Ubuntu",
+      "role": "body"
+    },
+    {
+      "family": "Poppins",
+      "role": "display"
+    }
+  ],
+  "colors": {
+    "primary": "#2C7616",
+    "accent": "#008000",
+    "background": "#FFFFFF",
+    "textPrimary": "#006400",
+    "link": "#006400"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "Arial",
+      "heading": "Franklin Gothic Medium"
+    },
+    "fontStacks": {
+      "heading": [
+        "Franklin Gothic Medium",
+        "Ubuntu",
+        "Arial",
+        "sans-serif"
+      ],
+      "body": [
+        "Franklin Gothic Medium",
+        "Ubuntu",
+        "Arial",
+        "sans-serif"
+      ],
+      "paragraph": [
+        "Poppins",
+        "sans-serif"
+      ]
+    },
+    "fontSizes": {
+      "h1": "24px",
+      "h2": "32px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "10px"
+  },
+  "components": {
+    "input": {
+      "background": "#E5E3E3",
+      "textColor": "#4A4A4A",
+      "borderColor": null,
+      "borderRadius": "10px",
+      "borderRadiusCorners": {
+        "topLeft": "10px",
+        "topRight": "10px",
+        "bottomRight": "10px",
+        "bottomLeft": "10px"
+      },
+      "shadow": "none"
+    },
+    "buttonPrimary": {
+      "background": "#008000",
+      "textColor": "#000000",
+      "borderColor": "#000000",
+      "borderRadius": "10px",
+      "borderRadiusCorners": {
+        "topLeft": "10px",
+        "topRight": "10px",
+        "bottomRight": "10px",
+        "bottomLeft": "10px"
+      },
+      "shadow": "none"
+    },
+    "buttonSecondary": {
+      "background": "#222222",
+      "textColor": "#99C199",
+      "borderColor": "#338333",
+      "borderRadius": "8px",
+      "borderRadiusCorners": {
+        "topLeft": "8px",
+        "topRight": "8px",
+        "bottomRight": "8px",
+        "bottomLeft": "8px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": null,
+    "favicon": "File saved at: attached_assets/favicon.ico",
+    "ogImage": "/assets/game/player/sword.png"
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": 1,
+      "text": "Reconnect",
+      "reasoning": "The 'Reconnect' button uses a vibrant green color (#008000), which is typically associated with primary actions. Its action-oriented text suggests it is the main call-to-action."
+    },
+    "secondary": {
+      "index": 0,
+      "text": "View Changelog",
+      "reasoning": "The 'View Changelog' button has a dark background (#222222), which contrasts with the vibrant primary button, making it suitable as a secondary action."
+    },
+    "confidence": 0.95
+  },
+  "personality": {
+    "tone": "playful",
+    "energy": "high",
+    "targetAudience": "gamers"
+  },
+  "designSystem": {
+    "framework": "custom",
+    "componentLibrary": ""
+  },
+  "confidence": {
+    "buttons": 0.95,
+    "colors": 0.9,
+    "overall": 0.925
+  },
+  "__llm_metadata": {
+    "logoSelection": {
+      "llmCalled": false,
+      "llmSucceeded": false,
+      "finalSource": "none"
+    },
+    "buttonClassification": {
+      "llmCalled": true,
+      "llmSucceeded": true
+    }
+  }
+}
