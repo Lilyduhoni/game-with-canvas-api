@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gunsbattle.io</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="loading-screen">
+    <div class="loader-content">
+      <h1 class="game-title">GUNSBATTLE<span class="io">.IO</span></h1>
+      <div class="loader-bar-container">
+        <div class="loader-bar" id="loader-bar"></div>
+      </div>
+      <p class="loader-text" id="loader-text">Loading assets...</p>
+    </div>
+    <div class="particles" id="particles"></div>
+  </div>
+
+  <div id="menu-screen" style="display:none;">
+    <div class="particles" id="menu-particles"></div>
+    <div class="menu-content">
+      <h1 class="game-title menu-title">GUNSBATTLE<span class="io">.IO</span></h1>
+      <div class="menu-box">
+        <input type="text" id="name-input" placeholder="Enter your name" maxlength="16" autocomplete="off" spellcheck="false">
+        <button id="play-btn">PLAY</button>
+      </div>
+      <div class="controls-info">
+        <p>WASD / Arrow Keys to move</p>
+        <p>Mouse to aim &middot; Click to shoot</p>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="game-canvas" style="display:none;"></canvas>
+
+  <div id="hud" style="display:none;">
+    <div id="kill-feed"></div>
+    <div id="leaderboard">
+      <div class="lb-title">LEADERBOARD</div>
+      <div id="lb-list"></div>
+    </div>
+    <div id="player-stats">
+      <span id="stat-kills">Kills: 0</span>
+      <span id="stat-deaths">Deaths: 0</span>
+    </div>
+    <div id="minimap-container">
+      <canvas id="minimap" width="150" height="150"></canvas>
+    </div>
+  </div>
+
+  <div id="death-screen" style="display:none;">
+    <div class="death-content">
+      <h2>YOU DIED</h2>
+      <p id="killed-by"></p>
+      <p class="respawn-text">Respawning...</p>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/game.js"></script>
+</body>
+</html>
